@@ -13,7 +13,6 @@ void simInit() {
     SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 0);
     SDL_RenderClear(Renderer);
     srand(time(NULL));
-    simPutPixel(0, 0, 0);
     simFlush();
 }
 
@@ -41,6 +40,17 @@ void simPutPixel(int x, int y, int rgb) {
     Uint8 b = rgb & 0xFF;
     SDL_SetRenderDrawColor(Renderer, r, g, b, 255);
     SDL_RenderDrawPoint(Renderer, x, y);
+}
+
+void simFillRect(int x, int y, int w, int h, int rgb) {
+    assert(0 <= x && x + w <= SIM_X_SIZE);
+    assert(0 <= y && y + h <= SIM_Y_SIZE);
+    Uint8 r = (rgb >> 16) & 0xFF;
+    Uint8 g = (rgb >> 8) & 0xFF;
+    Uint8 b = rgb & 0xFF;
+    SDL_SetRenderDrawColor(Renderer, r, g, b, 255);
+    SDL_Rect rect = {x, y, w, h};
+    SDL_RenderFillRect(Renderer, &rect);
 }
 
 int simRand() {

@@ -2,7 +2,7 @@
 
 #define MS_PER_GENERATION 10
 #define ALIVE_PROB 50
-#define ALIVE_COLOR 0xFFFFFF
+#define ALIVE_COLOR 0xC71585
 #define DEAD_COLOR 0x000000
 
 
@@ -12,7 +12,7 @@
 void app() {
     int current[FIELD_HEIGHT][FIELD_WIDTH];
     int next[FIELD_HEIGHT][FIELD_WIDTH];
-    int y, x, cy, cx;
+    int y, x;
     int last_flush_time = simGetTicks();
 
     for (y = 0; y < FIELD_HEIGHT; y++) {
@@ -29,11 +29,7 @@ void app() {
         for (y = 0; y < FIELD_HEIGHT; y++) {
             for (x = 0; x < FIELD_WIDTH; x++) {
                 int color = (current[y][x] == ALIVE) ? ALIVE_COLOR : DEAD_COLOR;
-                for (cy = 0; cy < CELL_SIZE; cy++) {
-                    for (cx = 0; cx < CELL_SIZE; cx++) {
-                        simPutPixel(x * CELL_SIZE + cx, y * CELL_SIZE + cy, color);
-                    }
-                }
+                simFillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE, color);
             }
         }
 

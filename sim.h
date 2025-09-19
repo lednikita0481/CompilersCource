@@ -11,6 +11,7 @@ void app();
 void simExit();
 void simFlush();
 void simPutPixel(int x, int y, int rgb);
+void simFillRect(int x, int y, int w, int h, int rgb);
 int simRand();
 int simGetTicks();
 void simDelay(int ms);
