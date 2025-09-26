@@ -1,5 +1,7 @@
 # Simple Game of life implementation
 
+All customisable settings are located in sim.h
+
 ## Usage:
 Simple run:
 ```

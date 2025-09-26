@@ -4,6 +4,9 @@
 #include <time.h>
 #include "sim.h"
 
+#define SIM_Y_SIZE (FIELD_HEIGHT * CELL_SIZE)
+#define SIM_X_SIZE (FIELD_WIDTH * CELL_SIZE)
+
 static SDL_Renderer *Renderer = NULL;
 static SDL_Window *Window = NULL;
 
@@ -69,4 +72,26 @@ int checkFinish() {
     if (SDL_HasEvent(SDL_QUIT) != SDL_TRUE)
         return 0;
     return 1;
+}
+
+int simGetMouseX() {
+    int x, y;
+    SDL_GetMouseState(&x, &y);
+    return x;
+}
+
+int simGetMouseY() {
+    int x, y;
+    SDL_GetMouseState(&x, &y);
+    return y;
+}
+
+int simIsMouseButtonDown(int button) {
+    int x, y;
+    return SDL_GetMouseState(&x, &y) & SDL_BUTTON(button);
+}
+
+int simIsKeyDown(int scancode) {
+    const Uint8 *state = SDL_GetKeyboardState(NULL);
+    return state[scancode];
 }
