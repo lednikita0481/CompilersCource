@@ -34,10 +34,13 @@
  */
 #define ALIVE_PROB 30
 
-
 #define ALIVE_COLOR1 0xC71585
 #define ALIVE_COLOR2 0x00FF00
 #define DEAD_COLOR 0x000000
+
+#define DEAD 0
+#define ALIVE1 1
+#define ALIVE2 2
 
 #ifndef __sim__
 #define __sim__
@@ -45,14 +48,9 @@ void simInit();
 void app();
 void simExit();
 void simFlush();
-void simPutPixel(int x, int y, int rgb);
 void simFillRect(int x, int y, int w, int h, int rgb);
 int simRand();
 int simGetTicks();
 void simDelay(int ms);
 int checkFinish();
-int simGetMouseX();
-int simGetMouseY();
-int simIsMouseButtonDown(int button);
-int simIsKeyDown(int scancode);
 #endif
